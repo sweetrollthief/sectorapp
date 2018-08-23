@@ -1,0 +1,29 @@
+{
+  "name": "sector-app-frontend",
+  "version": "1.0.0",
+  "description": "Sector Application Material UI frontend",
+  "main": "src/main/javascript/index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "author": "isa",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.17.0",
+    "webpack-cli": "^3.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.3",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
