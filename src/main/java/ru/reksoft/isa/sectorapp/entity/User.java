@@ -1,5 +1,7 @@
 package ru.reksoft.isa.sectorapp.entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,7 +27,7 @@ public class User implements Serializable {
     @Column(name = "is_agreed")
     private boolean isAgreed;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE

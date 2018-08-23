@@ -29,8 +29,10 @@ public class UserFacade {
     public void saveUser(final UserDTO userDTO) {
         final String userName = userDTO.getName();
         final User user = getUserEntity(userName);
+
         user.setName(userName);
         user.setIsAgreed(userDTO.getIsAgreed());
+
         final Set<Sector> sectors = userDTO.getSectors()
                 .stream()
                 .map(x -> sectorRepository.findById(x).get())
@@ -41,7 +43,6 @@ public class UserFacade {
 
     public void fillUserData(final UserDTO userDTO) {
         final String userName = userDTO.getName();
-
         final User user = getUserEntity(userName);
 
         userDTO.setName(user.getName());

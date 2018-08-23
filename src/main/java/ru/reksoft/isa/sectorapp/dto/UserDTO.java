@@ -37,4 +37,20 @@ public class UserDTO {
     public Set<Integer> getSectors() {
         return sectors;
     }
+
+    @Override
+    public boolean equals(final Object object) {
+        if (!(object instanceof UserDTO)) {
+            return false;
+        }
+
+        final UserDTO anotherDTO = (UserDTO) object;
+
+        return anotherDTO.getName().equals(name) &&
+                anotherDTO.getIsAgreed() == isAgreed &&
+                anotherDTO.getSectors().size() == sectors.size() &&
+                anotherDTO.getSectors()
+                        .stream()
+                        .allMatch(x -> sectors.contains(x));
+    }
 }
