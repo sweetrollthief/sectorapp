@@ -1,4 +1,4 @@
-package ru.reksoft.isa.sectorapp.beans;
+package ru.reksoft.isa.sectorapp.bean;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

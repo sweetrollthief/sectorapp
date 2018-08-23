@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
-import ru.reksoft.isa.sectorapp.beans.UserBean;
+import ru.reksoft.isa.sectorapp.bean.UserBean;
 import ru.reksoft.isa.sectorapp.dto.UserDTO;
 import ru.reksoft.isa.sectorapp.facade.UserFacade;
 import ru.reksoft.isa.sectorapp.repository.SectorRepository;

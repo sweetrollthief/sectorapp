@@ -1,4 +1,4 @@
-package ru.reksoft.isa.sectorapp.dao;
+package ru.reksoft.isa.sectorapp.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

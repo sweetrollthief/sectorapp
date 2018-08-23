@@ -1,7 +1,7 @@
 package ru.reksoft.isa.sectorapp.facade;
 
-import ru.reksoft.isa.sectorapp.dao.Sector;
-import ru.reksoft.isa.sectorapp.dao.User;
+import ru.reksoft.isa.sectorapp.entity.Sector;
+import ru.reksoft.isa.sectorapp.entity.User;
 import ru.reksoft.isa.sectorapp.dto.UserDTO;
 import ru.reksoft.isa.sectorapp.repository.SectorRepository;
 import ru.reksoft.isa.sectorapp.repository.UserRepository;
