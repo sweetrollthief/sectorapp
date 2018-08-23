@@ -86,7 +86,6 @@ ALTER TABLE public.user_to_sector OWNER TO postgres;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    session_id character varying(32) NOT NULL,
     name character varying(64) NOT NULL,
     is_agreed boolean
 );
@@ -229,7 +228,7 @@ COPY public.user_to_sector (user_id, sector_id) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, session_id, name, is_agreed) FROM stdin;
+COPY public.users (id, name, is_agreed) FROM stdin;
 \.
 
 
@@ -264,11 +263,11 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_session_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users users_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_session_id_key UNIQUE (session_id);
+    ADD CONSTRAINT users_name_key UNIQUE (name);
 
 
 --

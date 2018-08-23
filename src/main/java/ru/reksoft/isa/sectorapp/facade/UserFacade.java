@@ -1,5 +1,6 @@
 package ru.reksoft.isa.sectorapp.facade;
 
+import ru.reksoft.isa.sectorapp.beans.UserBean;
 import ru.reksoft.isa.sectorapp.dao.Sector;
 import ru.reksoft.isa.sectorapp.dao.User;
 import ru.reksoft.isa.sectorapp.dto.UserDTO;
@@ -18,19 +19,19 @@ public class UserFacade {
         this.sectorRepository = sectorRepository;
     }
 
-    private User getUserEntity(final String sessionId) {
-        User user = userRepository.findBySessionId(sessionId);
+    private User getUserEntity(final String userName) {
+        final User user = userRepository.findByName(userName);
         if (user == null) {
-            user = new User();
-            user.setSessionId(sessionId);
-            userRepository.save(user);
+            return new User();
         }
         return user;
     }
 
-    public void saveUser(final UserDTO userDTO, final String sessionId) {
-        final User user = getUserEntity(sessionId);
-        user.setName(userDTO.getName());
+    public void saveUser(final UserBean userBean) {
+        final UserDTO userDTO = userBean.getUserDTO();
+        final String userName = userDTO.getName();
+        final User user = getUserEntity(userName);
+        user.setName(userName);
         user.setIsAgreed(userDTO.getIsAgreed());
         final Set<Sector> sectors = userDTO.getSectors()
                 .stream()
@@ -40,9 +41,11 @@ public class UserFacade {
         userRepository.save(user);
     }
 
-    public UserDTO getUser(final String sessionId) {
-        final User user = getUserEntity(sessionId);
-        final UserDTO userDTO = new UserDTO();
+    public UserDTO getUserData(final UserBean userBean) {
+        final UserDTO userDTO = userBean.getUserDTO();
+        final String userName = userDTO.getName();
+
+        final User user = getUserEntity(userName);
 
         userDTO.setName(user.getName());
         userDTO.setIsAgreed(user.getIsAgreed());

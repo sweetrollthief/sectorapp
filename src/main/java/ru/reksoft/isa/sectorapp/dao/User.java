@@ -10,7 +10,6 @@ import java.util.Set;
 public class User implements Serializable {
     public User() {
         name = "";
-        sessionId = "";
     }
 
     private static final long serialVersionUID = -3009157732242241606L;
@@ -19,9 +18,6 @@ public class User implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "session_id", unique = true)
-    private String sessionId;
 
     @Column(name = "name")
     private String name;
@@ -46,14 +42,6 @@ public class User implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public String getSessionId() {
-        return sessionId;
     }
 
     public void setIsAgreed(boolean agreed) {

@@ -7,6 +7,6 @@ import ru.reksoft.isa.sectorapp.dao.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
-    @Query("SELECT u FROM User u WHERE u.sessionId = ?1")
-    User findBySessionId(final String sessionID);
+    @Query("SELECT u FROM User u WHERE u.name = ?1")
+    User findByName(final String userName);
 }
