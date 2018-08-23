@@ -1,6 +1,5 @@
 package ru.reksoft.isa.sectorapp.facade;
 
-import ru.reksoft.isa.sectorapp.beans.UserBean;
 import ru.reksoft.isa.sectorapp.dao.Sector;
 import ru.reksoft.isa.sectorapp.dao.User;
 import ru.reksoft.isa.sectorapp.dto.UserDTO;
@@ -27,8 +26,7 @@ public class UserFacade {
         return user;
     }
 
-    public void saveUser(final UserBean userBean) {
-        final UserDTO userDTO = userBean.getUserDTO();
+    public void saveUser(final UserDTO userDTO) {
         final String userName = userDTO.getName();
         final User user = getUserEntity(userName);
         user.setName(userName);
@@ -41,8 +39,7 @@ public class UserFacade {
         userRepository.save(user);
     }
 
-    public UserDTO getUserData(final UserBean userBean) {
-        final UserDTO userDTO = userBean.getUserDTO();
+    public void fillUserData(final UserDTO userDTO) {
         final String userName = userDTO.getName();
 
         final User user = getUserEntity(userName);
@@ -55,7 +52,5 @@ public class UserFacade {
                 .map(x -> x.getId())
                 .collect(Collectors.toSet());
         userDTO.setSectors(sectors);
-
-        return userDTO;
     }
 }

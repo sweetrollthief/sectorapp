@@ -29,13 +29,14 @@ public class UserController {
     @PostMapping(value = "/save", produces = "application/json")
     public ResponseEntity<String> saveUserData(@RequestBody UserDTO userDTO) {
         user.setUserDTO(userDTO);
-        new UserFacade(userRepository, sectorRepository).saveUser(user);
+        new UserFacade(userRepository, sectorRepository).saveUser(userDTO);
         return new ResponseEntity<>("{ \"message\": \"OK\" }", HttpStatus.OK);
     }
 
     @PostMapping(value = "/get")
     public ResponseEntity<UserDTO> getUserData() {
-        final UserDTO userDTO = new UserFacade(userRepository, sectorRepository).getUserData(user);
+        final UserDTO userDTO = user.getUserDTO();
+        new UserFacade(userRepository, sectorRepository).fillUserData(userDTO);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
