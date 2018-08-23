@@ -41,7 +41,27 @@ const drillDown = (acc, root) => {
     const children = root.children;
     if (root.children) children.forEach(x => drillDown(acc, x));
     return acc;
-}
+};
+
+const drillUp = (acc, sectors, searchId) => {
+    for (var i = 0; i < sectors.length; i++) {
+        const sector = sectors[i];
+        if (sector.id == searchId) {
+            acc.push(sector.id);
+            return true;
+        }
+        const children = sector.children;
+        if (children) {
+            const result = drillUp(acc, children, searchId);
+            if (result) {
+                acc.push(sector.id);
+                return true;
+            }
+        }
+    }
+
+    return false;
+};
 
 const findSector = (sectors, searchId) => {
     for (var i = 0; i < sectors.length; i++) {
@@ -113,6 +133,7 @@ class SectorForm extends React.Component {
             toggledValues.filter(x => checkedValues.indexOf(x) === -1).forEach(x => checkedValues.push(x));
             this.setState({ checkedValues });
         } else {
+            drillUp(toggledValues, this.props.sectors, id);
             const newCheckedValues = checkedValues.filter(x => toggledValues.indexOf(x) === -1);
             const data = this.state.data;
             data.sectors = newCheckedValues;
