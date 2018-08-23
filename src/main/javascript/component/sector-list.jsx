@@ -23,50 +23,7 @@ const styles = theme => ({
     },
 });
 
-const drillDown = (acc, root) => {
-    acc.push(root.id);
-    const children = root.children;
-    if (root.children) children.forEach(x => drillDown(acc, x));
-    return acc;
-}
-
-const findSector = (sectors, searchId) => {
-    for (var i = 0; i < sectors.length; i++) {
-        const sector = sectors[i];
-        if (sector.id == searchId) return sector;
-        const children = sector.children;
-        if (children) {
-            const searchResult = findSector(children, searchId);
-            if (searchResult) return searchResult;
-        }
-    }
-
-    return null;
-}
-
-
 class SectorList extends React.Component {
-    state = {
-        checked: []
-    };
-
-    toggleSector = id => () => {
-        const sector = findSector(this.props.sectors, id);
-        const value = this.state.checked.indexOf(id) === -1;
-        const toggledValues = drillDown([], sector);
-
-        const checkedValues = this.state.checked
-
-        if (value) {
-            toggledValues.filter(x => checkedValues.indexOf(x) === -1).forEach(x => checkedValues.push(x));
-            this.setState({ checkedValues });
-        } else {
-            const newCheckedValues = checkedValues.filter(x => toggledValues.indexOf(x) === -1);
-            this.setState({ checked: newCheckedValues });
-        }
-        this.props.onChange(this.state.checked);
-    };
-
     renderChildren(sectors, offset) {
         const newOffset = offset + 25;
         return (
