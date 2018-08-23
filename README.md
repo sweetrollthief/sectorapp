@@ -2,7 +2,8 @@
 
 Technologies and Tools:
 - Java 8
-- Spring
+- Spring Boot
+- Spring Web
 - Spring Data
 - Javascript
 - React
